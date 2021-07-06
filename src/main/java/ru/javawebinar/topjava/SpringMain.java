@@ -13,8 +13,8 @@ public class SpringMain {
     public static void main(String[] args) {
         // java 7 automatic resource management (ARM)
         try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
-            //Arrays.stream(appCtx.getBeanDefinitionNames()).map(s -> System.out.println(s));
-            System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
+            Arrays.asList(appCtx.getBeanDefinitionNames()).forEach(System.out::println);
+            //System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
             AdminRestController adminUserController = appCtx.getBean(AdminRestController.class);
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
 
